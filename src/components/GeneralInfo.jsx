@@ -16,7 +16,7 @@ function Input({ type, id }) {
 function GeneralInfo() {
   return (
     <div className="generalInfo">
-      <h1>General Information</h1>
+      <h3>General Information</h3>
       <div>
         <label htmlFor="fullname">Full Name</label>
         <br />
