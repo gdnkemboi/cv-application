@@ -138,12 +138,12 @@ function Education() {
       startDate: "2012-09-01",
       endDate: "2016-06-01",
       location: "Maseno, Kenya",
-    }
+    },
   ];
   const [educationXp, setEducationXp] = useState(eduXpList);
   const [isVisible, setVisibility] = useState(false);
   const [selectedEducation, setSelectedEducation] = useState(null);
-  
+
   function displayEduInput() {
     setVisibility(!isVisible);
   }
@@ -224,7 +224,11 @@ function Education() {
       />
       <ul style={{ listStyle: "none", display: isVisible ? "none" : "block" }}>
         {educationXp.map((edu) => (
-          <li key={edu.id} onClick={() => handleEduClick(edu)}>
+          <li
+            key={edu.id}
+            onClick={() => handleEduClick(edu)}
+            style={{ cursor: "pointer" }}
+          >
             {edu.university}
           </li>
         ))}
