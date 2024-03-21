@@ -15,22 +15,13 @@ function Button({ text, onClick, style }) {
 function ExperienceInput({
   display,
   hideXpInput,
-  company,
-  setCompany,
-  position,
-  setPosition,
-  startDate,
-  setStartDate,
-  endDate,
-  setEndDate,
-  location,
-  setLocation,
-  description,
-  setDescription,
   addExperience,
   selectedExperience,
   editExperience,
   deleteExperience,
+  experienceInfo,
+  setExperienceInfo,
+  onChange,
 }) {
   return (
     <div className="experienceInput" style={{ display: display }}>
@@ -40,8 +31,8 @@ function ExperienceInput({
         <Input
           type="text"
           id="company"
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
+          value={experienceInfo.company}
+          onChange={(e) => onChange("company", e.target.value)}
         />
       </div>
       <div>
@@ -50,8 +41,8 @@ function ExperienceInput({
         <Input
           type="text"
           id="position"
-          value={position}
-          onChange={(e) => setPosition(e.target.value)}
+          value={experienceInfo.position}
+          onChange={(e) => onChange("position", e.target.value)}
         />
       </div>
       <div>
@@ -60,8 +51,8 @@ function ExperienceInput({
         <Input
           type="date"
           id="startDate"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
+          value={experienceInfo.startDate}
+          onChange={(e) => onChange("startDate", e.target.value)}
         />
       </div>
       <div>
@@ -70,8 +61,8 @@ function ExperienceInput({
         <Input
           type="date"
           id="endDate"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
+          value={experienceInfo.endDate}
+          onChange={(e) => onChange("endDate", e.target.value)}
         />
       </div>
       <div>
@@ -80,8 +71,8 @@ function ExperienceInput({
         <Input
           type="text"
           id="location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
+          value={experienceInfo.location}
+          onChange={(e) => onChange("location", e.target.value)}
         />
       </div>
       <div>
@@ -90,8 +81,8 @@ function ExperienceInput({
         <Input
           type="text"
           id="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={experienceInfo.description}
+          onChange={(e) => onChange("description", e.target.value)}
         />
       </div>
 
@@ -107,12 +98,15 @@ function ExperienceInput({
         text="Cancel"
         onClick={() => {
           hideXpInput();
-          setCompany("");
-          setPosition("");
-          setStartDate("");
-          setEndDate("");
-          setLocation("");
-          setDescription("");
+          setExperienceInfo({
+            id: "",
+            company: "",
+            position: "",
+            startDate: "",
+            endDate: "",
+            location: "",
+            description: "",
+          });
         }}
       />
 
@@ -127,36 +121,17 @@ function ExperienceInput({
   );
 }
 
-function Experience() {
-  let [nextId, setNextId] = useState(0);
-  const [company, setCompany] = useState("");
-  const [position, setPosition] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [location, setLocation] = useState("");
-  const [description, setDescription] = useState("");
+function Experience({ nextId, setNextId, experienceList, setExperienceList }) {
+  const [experienceInfo, setExperienceInfo] = useState({
+    id: "",
+    company: "",
+    position: "",
+    startDate: "",
+    endDate: "",
+    location: "",
+    description: "",
+  });
 
-  const XpList = [
-    {
-      id: nextId++,
-      company: "Meta",
-      position: "Software Engineer",
-      startDate: "2020-09-01",
-      endDate: "2022-06-01",
-      location: "London, UK",
-      description: "Worked on the Meta platform.",
-    },
-    {
-      id: nextId++,
-      company: "Google",
-      position: "Software Engineer",
-      startDate: "2019-09-01",
-      endDate: "2020-06-01",
-      location: "London, UK",
-      description: "Worked on the Google platform.",
-    },
-  ];
-  const [experienceList, setExperienceList] = useState(XpList);
   const [isVisible, setVisibility] = useState(false);
   const [selectedExperience, setSelectedExperience] = useState(null);
 
@@ -167,44 +142,42 @@ function Experience() {
   function hideXpInput() {
     setVisibility(false);
     setSelectedExperience(null);
-    setCompany("");
-    setPosition("");
-    setStartDate("");
-    setEndDate("");
-    setLocation("");
-    setDescription("");
+    setExperienceInfo({
+      id: "",
+      company: "",
+      position: "",
+      startDate: "",
+      endDate: "",
+      location: "",
+      description: "",
+    });
   }
 
+  const handleXpChange = (key, value) => {
+    setExperienceInfo({
+      ...experienceInfo,
+      [key]: value,
+    });
+  };
+
   function addExperience() {
-    setExperienceList([
-      ...experienceList,
-      {
-        id: nextId++,
-        company,
-        position,
-        startDate,
-        endDate,
-        location,
-        description,
-      },
-    ]);
+    setExperienceInfo({ ...experienceInfo, id: nextId });
+    setExperienceList([...experienceList, experienceInfo]);
     setNextId(nextId + 1);
-    setCompany("");
-    setPosition("");
-    setStartDate("");
-    setEndDate("");
-    setLocation("");
-    setDescription("");
+    setExperienceInfo({
+      id: "",
+      company: "",
+      position: "",
+      startDate: "",
+      endDate: "",
+      location: "",
+      description: "",
+    });
   }
 
   function handleXpClick(xp) {
     setSelectedExperience(xp);
-    setCompany(xp.company);
-    setPosition(xp.position);
-    setStartDate(xp.startDate);
-    setEndDate(xp.endDate);
-    setLocation(xp.location);
-    setDescription(xp.description);
+    setExperienceInfo(xp);
 
     displayXpInput();
   }
@@ -215,12 +188,7 @@ function Experience() {
         if (xp.id === selectedExperience.id) {
           return {
             ...xp,
-            company,
-            position,
-            startDate,
-            endDate,
-            location,
-            description,
+            ...experienceInfo,
           };
         }
         return xp;
@@ -240,22 +208,13 @@ function Experience() {
       <ExperienceInput
         display={isVisible ? "block" : "none"}
         hideXpInput={hideXpInput}
-        company={company}
-        setCompany={setCompany}
-        position={position}
-        setPosition={setPosition}
-        startDate={startDate}
-        setStartDate={setStartDate}
-        endDate={endDate}
-        setEndDate={setEndDate}
-        location={location}
-        setLocation={setLocation}
-        description={description}
-        setDescription={setDescription}
         addExperience={addExperience}
         selectedExperience={selectedExperience}
         editExperience={editExperience}
         deleteExperience={deleteExperience}
+        experienceInfo={experienceInfo}
+        setExperienceInfo={setExperienceInfo}
+        onChange={handleXpChange}
       />
       <ul style={{ listStyle: "none", display: isVisible ? "none" : "block" }}>
         {experienceList.map((xp) => (

@@ -43,6 +43,29 @@ function App() {
 
   const [educationXp, setEducationXp] = useState(eduXpList);
 
+  const XpList = [
+    {
+      id: nextId++,
+      company: "Meta",
+      position: "Software Engineer",
+      startDate: "2020-09-01",
+      endDate: "2022-06-01",
+      location: "London, UK",
+      description: "Worked on the Meta platform.",
+    },
+    {
+      id: nextId++,
+      company: "Google",
+      position: "Software Engineer",
+      startDate: "2019-09-01",
+      endDate: "2020-06-01",
+      location: "London, UK",
+      description: "Worked on the Google platform.",
+    },
+  ];
+
+  const [experienceList, setExperienceList] = useState(XpList);
+
   return (
     <div className="container">
       <div className="cvEdit">
@@ -53,13 +76,19 @@ function App() {
           educationXp={educationXp}
           setEducationXp={setEducationXp}
         />
-        <Experience />
+        <Experience
+          nextId={nextId}
+          setNextId={setNextId}
+          experienceList={experienceList}
+          setExperienceList={setExperienceList}
+        />
       </div>
 
       <div className="preview">
         <Preview
           generalInformation={generalInformation}
           educationInformation={educationXp}
+          experienceInformation={experienceList}
         />
       </div>
     </div>
