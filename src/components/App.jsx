@@ -7,10 +7,10 @@ import "./App.css";
 
 function App() {
   const [generalInformation, setGeneralInformation] = useState({
-    fullName: "",
-    email: "",
-    phoneNumber: "",
-    address: "",
+    fullName: "Gideon Kemboi",
+    email: "gedionkemboi18@gmail.com",
+    phoneNumber: "+254 745 282 829",
+    address: "Kericho, KE",
   });
 
   const handleChange = (key, value) => {
@@ -69,7 +69,7 @@ function App() {
   return (
     <div className="container">
       <div className="cvEdit">
-        <GeneralInfo onChange={handleChange} />
+        <GeneralInfo generalInformation={generalInformation} onChange={handleChange} />
         <Education
           nextId={nextId}
           setNextId={setNextId}
