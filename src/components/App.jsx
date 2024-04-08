@@ -3,7 +3,7 @@ import { GeneralInfo } from "./GeneralInfo";
 import { Education } from "./Education";
 import { Experience } from "./Experience";
 import { Preview } from "./Preview";
-import "./App.css";
+import "/src/styles/App.css";
 
 function App() {
   const [generalInformation, setGeneralInformation] = useState({
