@@ -69,7 +69,10 @@ function App() {
   return (
     <div className="container">
       <div className="cvEdit">
-        <GeneralInfo generalInformation={generalInformation} onChange={handleChange} />
+        <GeneralInfo
+          generalInformation={generalInformation}
+          onChange={handleChange}
+        />
         <Education
           nextId={nextId}
           setNextId={setNextId}
@@ -84,13 +87,11 @@ function App() {
         />
       </div>
 
-      <div className="preview">
-        <Preview
-          generalInformation={generalInformation}
-          educationInformation={educationXp}
-          experienceInformation={experienceList}
-        />
-      </div>
+      <Preview
+        generalInformation={generalInformation}
+        educationInformation={educationXp}
+        experienceInformation={experienceList}
+      />
     </div>
   );
 }

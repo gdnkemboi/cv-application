@@ -1,6 +1,76 @@
 .container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
 }
 
+.preview {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  color: black;
+}
+
+.generalInfoPreview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #020617;
+  color: white;
+  padding: 20px;
+}
+
+.fullName {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.email, .phone, .address {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.email img,
+.phone img,
+.address img {
+  height: 25px;
+  width: 25px;
+  fill: black;
+}
+
+.generalInfoPreview > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.educationPreview,
+.experiencePreview {
+  display: flex;
+  flex-direction: column;
+}
+
+.educationPreview > h3,
+.experiencePreview > h3 {
+  align-self: center;
+}
+
+.educationInformation,
+.experienceInformation {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.eduInfo,
+.xpInfo {
+  display: flex;
+  gap: 30px;
+}
+
+.university,
+.company {
+  font-weight: bold;
+}
