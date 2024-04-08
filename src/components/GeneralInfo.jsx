@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-function Input({ type, id, value, onChange }) {
-  return <input type={type} id={id} value={value} onChange={onChange} />;
+function Input({ type, id, value, placeholder, onChange }) {
+  return <input type={type} id={id} value={value} placeholder={placeholder} onChange={onChange} />;
 }
 
 function GeneralInfo({ generalInformation, onChange }) {
@@ -15,6 +15,7 @@ function GeneralInfo({ generalInformation, onChange }) {
           type="text"
           id="fullName"
           value={generalInformation.fullName}
+          placeholder="First and last name"
           onChange={(e) => onChange("fullName", e.target.value)}
         />
       </div>
@@ -25,6 +26,7 @@ function GeneralInfo({ generalInformation, onChange }) {
           type="email"
           id="email"
           value={generalInformation.email}
+          placeholder="Enter Email"
           onChange={(e) => onChange("email", e.target.value)}
         />
       </div>
@@ -35,6 +37,7 @@ function GeneralInfo({ generalInformation, onChange }) {
           type="tel"
           id="phoneNumber"
           value={generalInformation.phoneNumber}
+          placeholder="Enter phone number"
           onChange={(e) => onChange("phoneNumber", e.target.value)}
         />
       </div>
@@ -45,6 +48,7 @@ function GeneralInfo({ generalInformation, onChange }) {
           type="text"
           id="address"
           value={generalInformation.address}
+          placeholder="City, Country"
           onChange={(e) => onChange("address", e.target.value)}
         />
       </div>

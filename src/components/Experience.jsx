@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-function Input({ type, id, value, onChange }) {
-  return <input type={type} id={id} value={value} onChange={onChange} />;
+function Input({ type, id, value, placeholder, onChange }) {
+  return <input type={type} id={id} value={value} placeholder={placeholder} onChange={onChange} />;
 }
 
 function Button({ text, onClick, style }) {
@@ -32,6 +32,7 @@ function ExperienceInput({
           type="text"
           id="company"
           value={experienceInfo.company}
+          placeholder="Enter Company"
           onChange={(e) => onChange("company", e.target.value)}
         />
       </div>
@@ -42,6 +43,7 @@ function ExperienceInput({
           type="text"
           id="position"
           value={experienceInfo.position}
+          placeholder="Enter Position"
           onChange={(e) => onChange("position", e.target.value)}
         />
       </div>
@@ -49,9 +51,10 @@ function ExperienceInput({
         <label htmlFor="startDate">Start Date</label>
         <br />
         <Input
-          type="date"
+          type="text"
           id="startDate"
           value={experienceInfo.startDate}
+          placeholder="Enter Start Date"
           onChange={(e) => onChange("startDate", e.target.value)}
         />
       </div>
@@ -59,9 +62,10 @@ function ExperienceInput({
         <label htmlFor="endDate">End Date</label>
         <br />
         <Input
-          type="date"
+          type="text"
           id="endDate"
           value={experienceInfo.endDate}
+          placeholder="Enter End Date"
           onChange={(e) => onChange("endDate", e.target.value)}
         />
       </div>
@@ -72,6 +76,7 @@ function ExperienceInput({
           type="text"
           id="location"
           value={experienceInfo.location}
+          placeholder="Enter Location"
           onChange={(e) => onChange("location", e.target.value)}
         />
       </div>
@@ -82,6 +87,7 @@ function ExperienceInput({
           type="text"
           id="description"
           value={experienceInfo.description}
+          placeholder="Enter Description"
           onChange={(e) => onChange("description", e.target.value)}
         />
       </div>
@@ -163,7 +169,7 @@ function Experience({ nextId, setNextId, experienceList, setExperienceList }) {
   function addExperience() {
     setExperienceInfo({ ...experienceInfo, id: nextId });
     setExperienceList([...experienceList, experienceInfo]);
-    setNextId(nextId + 1);
+    setNextId((nextId) => nextId + 1);
     setExperienceInfo({
       id: "",
       company: "",

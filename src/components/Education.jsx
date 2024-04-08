@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-function Input({ type, id, value, onChange }) {
-  return <input type={type} id={id} value={value} onChange={onChange} />;
+function Input({ type, id, value, placeholder, onChange }) {
+  return <input type={type} id={id} value={value} placeholder={placeholder} onChange={onChange} />;
 }
 
 function Button({ text, onClick, style }) {
@@ -32,6 +32,7 @@ function EducationInput({
           type="text"
           id="university"
           value={educationInfo.university}
+          placeholder="Enter school/university"
           onChange={(e) => onChange("university", e.target.value)}
         />
       </div>
@@ -42,6 +43,7 @@ function EducationInput({
           type="text"
           id="degree"
           value={educationInfo.degree}
+          placeholder="Enter Degree/Field of study"
           onChange={(e) => onChange("degree", e.target.value)}
         />
       </div>
@@ -49,9 +51,10 @@ function EducationInput({
         <label htmlFor="startDate">Start Date</label>
         <br />
         <Input
-          type="date"
+          type="text"
           id="startDate"
           value={educationInfo.startDate}
+          placeholder="Enter Start Date"
           onChange={(e) => onChange("startDate", e.target.value)}
         />
       </div>
@@ -59,9 +62,10 @@ function EducationInput({
         <label htmlFor="endDate">End Date</label>
         <br />
         <Input
-          type="date"
+          type="text"
           id="endDate"
           value={educationInfo.endDate}
+          placeholder="Enter End Date"
           onChange={(e) => onChange("endDate", e.target.value)}
         />
       </div>
@@ -72,6 +76,7 @@ function EducationInput({
           type="text"
           id="location"
           value={educationInfo.location}
+          placeholder="Enter Location"
           onChange={(e) => onChange("location", e.target.value)}
         />
       </div>
@@ -150,7 +155,7 @@ function Education({ nextId, setNextId, educationXp, setEducationXp }) {
   function addEducation() {
     setEducationInfo({ ...educationInfo, id: nextId });
     setEducationXp([...educationXp, educationInfo]);
-    setNextId(nextId + 1);
+    setNextId((nextId) => nextId + 1);
     setEducationInfo({
       id: "",
       university: "",

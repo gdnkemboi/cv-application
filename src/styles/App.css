@@ -31,6 +31,7 @@
   gap: 5px;
 }
 
+/* find a way to change svg in img tag color */
 .email img,
 .phone img,
 .address img {
